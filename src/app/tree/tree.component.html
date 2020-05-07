@@ -1,0 +1,32 @@
+<div *ngFor="let node of treeData; let i = index" style="margin-left:150px">
+  <div class="card-container" >
+    <a class="card" rel="noopener" (click)="showCildren(node)">
+      <span>{{ node.name }}</span>
+      <img *ngIf="node.imgUrl" [defaultImage]="defaultImage" [lazyLoad]="node.imgUrl" style="height: 75px;width: 235px;">
+      <div *ngIf="node.children">
+        <svg
+         *ngIf="!node.showCildren"
+          class="material-icons"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+        </svg>
+
+        <svg
+          *ngIf="node.showCildren"
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </div>
+    </a>
+  </div>
+  <app-tree *ngIf="node.showCildren" [treeData]="node.children"></app-tree>
+</div>
